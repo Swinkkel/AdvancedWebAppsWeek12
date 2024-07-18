@@ -26,4 +26,14 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 
+if (process.env.NODE_ENV === "development") {
+    var corsOptions = {
+        origin: "http://localhost:3000",
+        optionsSuccessStatus: 200,
+    };
+    
+    app.use(cors(corsOptions));
+    console.log("Using CORS for development");
+}
+
 module.exports = app;
