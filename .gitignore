@@ -1,0 +1,10 @@
+# Do not push node_modules folders
+/client/node_modules
+/server/node_modules
+/node_modules
+
+# Build folder
+/client/Build
+
+# .env file
+.end
