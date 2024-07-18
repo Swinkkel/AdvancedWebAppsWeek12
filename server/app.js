@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require("mongoose")
+const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -31,7 +32,7 @@ if (process.env.NODE_ENV === "development") {
         origin: "http://localhost:3000",
         optionsSuccessStatus: 200,
     };
-    
+
     app.use(cors(corsOptions));
     console.log("Using CORS for development");
 }
