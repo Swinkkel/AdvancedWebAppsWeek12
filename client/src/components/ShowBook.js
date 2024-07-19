@@ -13,6 +13,9 @@ function BookDetails() {
         const encodedURI = encodeURIComponent(name);
         const response = await fetch(`/api/book/` + encodedURI);
         if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error('404: This is not the webpage you are looking for');
+          }
           throw new Error('Book not found');
         }
         const data = await response.json();

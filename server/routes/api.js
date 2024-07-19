@@ -29,7 +29,7 @@ router.get('/book/:name', async function(req, res, next) {
         const bookName = req.params.name;
         const book = await Book.findOne({ name: decodeURIComponent(bookName) });
         if (!book) {
-          return res.status(404).json({ error: 'Book not found' });
+          return res.status(404).json({ error: 'This is not the webpage you are looking for' });
         }
         res.json(book);
       } catch (err) {
