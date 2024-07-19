@@ -1,13 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
-import AddBook from './components/AddBook'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CreateBook from './components/CreateBook'
+import ShowBook from './components/ShowBook'
 
 function App() {
   return (
-    <div className="App">
-      <h1>books</h1>
-      <AddBook />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<CreateBook />} />
+        <Route path="/book/:name" element={<ShowBook />} />
+      </Routes>
+    </Router>
   );
 }
 

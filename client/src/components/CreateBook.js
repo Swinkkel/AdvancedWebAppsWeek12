@@ -1,10 +1,12 @@
 // client/src/components/AddBook.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function AddBook() {
   const [name, setName] = useState('');
   const [author, setAuthor] = useState('');
   const [pages, setPages] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,10 +19,8 @@ function AddBook() {
         body: JSON.stringify({ name, author, pages })
       });
       if (response.ok) {
-        alert('Book added successfully');
-        setName('');
-        setAuthor('');
-        setPages('');
+        const encodedURI = encodeURIComponent(name);
+        navigate("/book/" + encodedURI + "");
       } else {
         alert('Failed to add book');
       }
@@ -33,6 +33,7 @@ function AddBook() {
   return (
     <form onSubmit={handleSubmit}>
       <div>
+        <h1>books</h1>
         <label htmlFor="name">Book Name</label>
         <input
           id="name"

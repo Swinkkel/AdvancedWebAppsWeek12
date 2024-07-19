@@ -24,4 +24,17 @@ router.post('/book', async function(req, res, next) {
       }
 });
 
+router.get('/book/:name', async function(req, res, next) {
+    try {
+        const bookName = req.params.name;
+        const book = await Book.findOne({ name: decodeURIComponent(bookName) });
+        if (!book) {
+          return res.status(404).json({ error: 'Book not found' });
+        }
+        res.json(book);
+      } catch (err) {
+        res.status(500).json({ error: err.message });
+      }
+});
+
 module.exports = router;
